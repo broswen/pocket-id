@@ -319,6 +319,8 @@
 	"dark_mode_logo": "Dark Mode Logo",
 	"email_logo": "Email Logo",
 	"background_image": "Background Image",
+	"disable_background_image": "Disable Background Image",
+	"disable_background_image_description": "When enabled, the background image will not be displayed on the login page and the login form will be centered.",
 	"language": "Language",
 	"reset_profile_picture_question": "Reset profile picture?",
 	"this_will_remove_the_uploaded_image_and_reset_the_profile_picture_to_default": "This will remove the uploaded image and reset the profile picture to default. Do you want to continue?",

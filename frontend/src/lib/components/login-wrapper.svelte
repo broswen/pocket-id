@@ -29,6 +29,8 @@
 	let backgroundImageUrl = $derived(cachedBackgroundImage.getUrl());
 	let imageError = $derived(missingBackgroundImageUrl === backgroundImageUrl);
 	let imageLoaded = $derived(loadedBackgroundImageUrl === backgroundImageUrl);
+	let backgroundImageDisabled = $derived($appConfigStore.backgroundImageDisabled);
+	let showBackgroundImage = $derived(!backgroundImageDisabled && !imageError);
 	let animate = $derived(isInitialLoad && imageLoaded && !$appConfigStore.disableAnimations);
 
 	afterNavigate((e) => {
@@ -94,7 +96,7 @@
 			</div>
 		</div>
 
-		{#if !imageError}
+		{#if showBackgroundImage}
 			<!-- Background image -->
 			<div class="m-6 flex h-[calc(100vh-3rem)] overflow-hidden rounded-[40px]">
 				<img
@@ -110,7 +112,7 @@
 {:else}
 	<div
 		class="flex h-screen items-center justify-center bg-cover bg-center text-center"
-		style="background-image: url({cachedBackgroundImage.getUrl()});"
+		style={backgroundImageDisabled ? '' : `background-image: url(${cachedBackgroundImage.getUrl()});`}
 	>
 		<Card.Root class="mx-3 w-full max-w-md">
 			<Card.CardContent

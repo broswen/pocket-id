@@ -10,6 +10,7 @@ export type AppConfig = {
 	emailVerificationEnabled: boolean;
 	ldapEnabled: boolean;
 	disableAnimations: boolean;
+	backgroundImageDisabled: boolean;
 	uiConfigDisabled: boolean;
 	accentColor: string;
 	requireUserEmail: boolean;
