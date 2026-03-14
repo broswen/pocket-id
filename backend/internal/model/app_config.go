@@ -40,8 +40,9 @@ type AppConfig struct {
 	EmailsVerified            AppConfigVariable `key:"emailsVerified"`
 	AccentColor               AppConfigVariable `key:"accentColor,public"`         // Public
 	DisableAnimations         AppConfigVariable `key:"disableAnimations,public"`   // Public
-	AllowOwnAccountEdit       AppConfigVariable `key:"allowOwnAccountEdit,public"` // Public
-	AllowUserSignups          AppConfigVariable `key:"allowUserSignups,public"`    // Public
+	AllowOwnAccountEdit       AppConfigVariable `key:"allowOwnAccountEdit,public"`      // Public
+	AllowUserSignups          AppConfigVariable `key:"allowUserSignups,public"`          // Public
+	BackgroundImageDisabled   AppConfigVariable `key:"backgroundImageDisabled,public"`   // Public
 	SignupDefaultUserGroupIDs AppConfigVariable `key:"signupDefaultUserGroupIDs"`
 	SignupDefaultCustomClaims AppConfigVariable `key:"signupDefaultCustomClaims"`
 	// Internal

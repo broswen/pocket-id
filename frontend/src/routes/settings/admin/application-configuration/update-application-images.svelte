@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
+	import SwitchWithLabel from '$lib/components/form/switch-with-label.svelte';
 	import { m } from '$lib/paraglide/messages';
 	import {
 		cachedApplicationLogo,
@@ -10,15 +11,18 @@
 	import ApplicationImage from './application-image.svelte';
 
 	let {
+		backgroundImageDisabled: initialBackgroundImageDisabled = false,
 		callback
 	}: {
+		backgroundImageDisabled?: boolean;
 		callback: (
 			logoLight: File | undefined,
 			logoDark: File | undefined,
 			logoEmail: File | undefined,
 			defaultProfilePicture: File | null | undefined,
 			backgroundImage: File | null | undefined,
-			favicon: File | undefined
+			favicon: File | undefined,
+			backgroundImageDisabled: boolean
 		) => void;
 	} = $props();
 
@@ -31,6 +35,7 @@
 
 	let defaultProfilePictureSet = $state(true);
 	let backgroundImageSet = $state(true);
+	let backgroundImageDisabled = $state(initialBackgroundImageDisabled);
 </script>
 
 <div class="flex flex-col gap-8">
@@ -85,13 +90,19 @@
 		imageURL={cachedBackgroundImage.getUrl()}
 		isImageSet={backgroundImageSet}
 	/>
+	<SwitchWithLabel
+		id="disable-background-image"
+		label={m.disable_background_image()}
+		description={m.disable_background_image_description()}
+		bind:checked={backgroundImageDisabled}
+	/>
 </div>
 <div class="flex justify-end">
 	<Button
 		class="mt-5"
 		usePromiseLoading
 		onclick={() =>
-			callback(logoLight, logoDark, logoEmail, defaultProfilePicture, backgroundImage, favicon)}
+			callback(logoLight, logoDark, logoEmail, defaultProfilePicture, backgroundImage, favicon, backgroundImageDisabled)}
 		>{m.save()}</Button
 	>
 </div>

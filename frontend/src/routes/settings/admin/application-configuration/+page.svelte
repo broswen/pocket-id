@@ -45,7 +45,8 @@
 		logoEmail: File | undefined,
 		defaultProfilePicture: File | null | undefined,
 		backgroundImage: File | null | undefined,
-		favicon: File | undefined
+		favicon: File | undefined,
+		backgroundImageDisabled: boolean
 	) {
 		const faviconPromise = favicon ? appConfigService.updateFavicon(favicon) : Promise.resolve();
 
@@ -83,7 +84,10 @@
 			backgroundImagePromise,
 			faviconPromise
 		])
-			.then(() => toast.success(m.images_updated_successfully()))
+			.then(async () => {
+				await updateAppConfig({ backgroundImageDisabled });
+				toast.success(m.images_updated_successfully());
+			})
 			.catch(axiosErrorToast);
 	}
 </script>
@@ -152,6 +156,9 @@
 		title={m.images()}
 		description={m.configure_application_images()}
 	>
-		<UpdateApplicationImages callback={updateImages} />
+		<UpdateApplicationImages
+			backgroundImageDisabled={appConfig.backgroundImageDisabled}
+			callback={updateImages}
+		/>
 	</CollapsibleCard>
 </div>
